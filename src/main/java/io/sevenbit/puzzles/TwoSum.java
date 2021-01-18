@@ -12,7 +12,7 @@ import java.util.TreeMap;
 public class TwoSum {
 
     public static int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> reverse = new HashMap<>();
+        Map<Integer, Integer> reverse = new HashMap<>(nums.length);
         for (int i = 0; i < nums.length; i++) {
             reverse.put(nums[i], i);
         }
@@ -30,9 +30,15 @@ public class TwoSum {
         int[] expected = new int[]{1, 2};
         int[] actual = twoSum(nums, 6);
         check(actual, expected);
+
         nums = new int[]{3, 3};
         expected = new int[]{0, 1};
         actual = twoSum(nums, 6);
+        check(expected, actual);
+
+        nums = new int[]{3,2,95,4,-3};
+        expected = new int[]{2,4};
+        actual = twoSum(nums, 92);
         check(expected, actual);
     }
 
