@@ -11,16 +11,14 @@ import java.util.TreeMap;
  */
 public class TwoSum {
 
-    public static int[] twoSum(int[] nums, int target) {
+   public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> reverse = new HashMap<>(nums.length);
-        for (int i = 0; i < nums.length; i++) {
-            reverse.put(nums[i], i);
-        }
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) { // O(n)
             Integer value = reverse.get(target - nums[i]);
             if (value != null && value != i) {
                 return new int[]{i, value};
             }
+            reverse.put(nums[i], i);
         }
         return null;
     }
@@ -43,8 +41,10 @@ public class TwoSum {
     }
 
     static void check(int[] expected, int[] actual) {
+        Arrays.sort(expected);
+        Arrays.sort(actual);
         if (!Arrays.equals(expected, actual)) {
-            throw new RuntimeException("wrong answer");
+            throw new RuntimeException("wrong answer: " + Arrays.toString(expected) + " " + Arrays.toString(actual));
         }
     }
 
