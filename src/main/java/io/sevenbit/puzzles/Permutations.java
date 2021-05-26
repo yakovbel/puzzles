@@ -52,4 +52,49 @@ public class Permutations {
         }
 
     }
+
+    /**
+     * Same task solved without recoursion (Heap's algorithm)
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> permuteWithoutRecursion(int[] nums) {
+        List<int[]> result = new ArrayList<>();
+        List<int[]> result2 = new ArrayList<>();
+
+        result.add(nums);
+
+        for(int level = 0; level < nums.length; level++) {
+            for(int i = level; i < nums.length; i++) {
+                for(int[] prev : result) {
+                    int[] perm = swap(level, i, prev);
+                    result2.add(perm);
+                }
+            }
+            result = result2;
+            result2 = new ArrayList<>();
+        }
+
+        List<List<Integer>> returnResult = new ArrayList<>();
+        for(int[] r : result) {
+            List<Integer> subResult = new ArrayList<>(r.length);
+            for(int i = 0; i < r.length; i++) {
+                subResult.add(r[i]);
+            }
+            returnResult.add(subResult);
+        }
+        return returnResult;
+    }
+
+    public int[] swap(int i, int j, int[] nums) {
+        int[] copy = new int[nums.length];
+
+        for(int x = 0; x < copy.length; x++) {
+            copy[x] = nums[x];
+        }
+
+        copy[i] = nums[j];
+        copy[j] = nums[i];
+        return copy;
+    }
 }
