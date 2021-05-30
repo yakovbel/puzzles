@@ -1,5 +1,7 @@
 package io.sevenbit.puzzles;
 
+import java.util.LinkedList;
+
 /**
  * Leetcode 230. Kth Smallest Element in a BST
  */
@@ -64,6 +66,20 @@ public class KthSmallestInBST {
         if (node != null) return node;
 
         return null;
+    }
+
+    public int kthSmallestItertative(TreeNode root, int k) {
+        LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+
+        while (true) {
+            while (root != null) {
+                stack.add(root);
+                root = root.left;
+            }
+            root = stack.removeLast();
+            if (--k == 0) return root.val;
+            root = root.right;
+        }
     }
 
 }
