@@ -68,6 +68,33 @@ public class VKPhone {
 
     }
 
+    private String phoneDigits;
+    private List<String> combinations = new ArrayList<>();
+    Map<String, List<String>> m = mapping();
+
+    public List<String> letterCombinationsWithBacktracking(String digits) {
+        if(digits.isEmpty()) return new ArrayList<>();
+
+        phoneDigits = digits;
+        backtrack(0, new StringBuilder());
+        return combinations;
+
+    }
+
+    public void backtrack(int index, StringBuilder path) {
+        if(path.length() == phoneDigits.length()) {
+            combinations.add(path.toString());
+            return; //backtrack
+        }
+
+        List<String> possibleLetters = m.get(Character.toString(phoneDigits.charAt(index)));
+        for(String letter : possibleLetters) {
+            path.append(letter);
+            backtrack(index+1, path);
+            path.deleteCharAt(path.length()-1);
+        }
+    }
+
 
 }
 
