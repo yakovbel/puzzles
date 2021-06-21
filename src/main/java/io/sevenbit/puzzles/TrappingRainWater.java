@@ -27,4 +27,30 @@ public class TrappingRainWater {
         }
         return size;
     }
+
+
+    public int trapMax(int[] height) {
+        int result = 0;
+        int len = height.length;
+        //find max
+        int maxIdx = 0;
+        for(int i = 1; i < len; i++) {
+            if(height[i] >= height[maxIdx]) {
+                maxIdx = i;
+            }
+        }
+        int leftMaxIdx = 0;
+        for(int i = 1; i < len; i++) {
+            if(height[i] > height[leftMaxIdx]) {
+                leftMaxIdx = i;
+            } else {
+                int vol = leftMaxIdx - height[i];
+                if(vol > 0) {
+                    result += vol;
+                }
+            }
+        }
+
+        return result;
+    }
 }
