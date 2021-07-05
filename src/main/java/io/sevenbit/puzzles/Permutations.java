@@ -104,12 +104,12 @@ public class Permutations {
 
     public List<List<Integer>> permuteBacktracking(int[] nums) {
         result = new ArrayList<>();
-        backtrack(new HashSet<Integer>(), nums, new LinkedList<>());
+        backtrack(new HashSet<Integer>(), nums, new ArrayList<>());
         return result;
     }
 
     List<List<Integer>> result = new ArrayList<>();
-    public void backtrack(Set<Integer> occupied, int[] nums, LinkedList<Integer> r) {
+    public void backtrack(Set<Integer> occupied, int[] nums, List<Integer> r) {
         if(r.size() == nums.length) {
             result.add(new ArrayList(r));
             return;

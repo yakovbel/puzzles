@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 /**
  * Leetcode 611. Valid Triangle Number
+ * 1. sort
+ * 2. first: from 0 to len - 2
+ * 3. minThird = first + 2
+ * 4. second: from first + 1 to len - 1
  */
 public class TriangleNumber {
     public int triangleNumber(int[] nums) {
@@ -24,6 +28,9 @@ public class TriangleNumber {
         return result;
     }
 
+    /**
+     * binary-search like
+     */
     public int maxLowerValueIdx(int value, int[] nums, int start, int end) {
         int result = -1;
         while(start <= end) {
