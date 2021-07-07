@@ -28,7 +28,7 @@ public class GroupShiftedStrings {
         char first = chars[0];
         StringBuilder sb = new StringBuilder();
         for(char ch : chars) {
-            sb.append((100+(ch-first)) % 26);
+            sb.append((100+(ch-first)) % 26); //100 to make sure number will be positive
         }
         return sb.toString();
     }
