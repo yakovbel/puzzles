@@ -2,7 +2,6 @@ package io.sevenbit.puzzles;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -104,14 +103,14 @@ public class Permutations {
 
     public List<List<Integer>> permuteBacktracking(int[] nums) {
         result = new ArrayList<>();
-        backtrack(new HashSet<Integer>(), nums, new ArrayList<>());
+        backtrack(new HashSet<>(), nums, new ArrayList<>());
         return result;
     }
 
     List<List<Integer>> result = new ArrayList<>();
     public void backtrack(Set<Integer> occupied, int[] nums, List<Integer> r) {
         if(r.size() == nums.length) {
-            result.add(new ArrayList(r));
+            result.add(new ArrayList<>(r));
             return;
         }
 

@@ -1,5 +1,6 @@
 package io.sevenbit.puzzles;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -27,9 +28,7 @@ public class MergeKLists {
         ListNode result = null;
         ListNode head = null;
 
-        PriorityQueue<ListNode> q = new PriorityQueue<ListNode>((n1, n2) -> {
-            return n1.val - n2.val;
-        });
+        PriorityQueue<ListNode> q = new PriorityQueue<ListNode>(Comparator.comparingInt(n1 -> n1.val));
 
         for (ListNode n : lists) {
             if (n != null) {
