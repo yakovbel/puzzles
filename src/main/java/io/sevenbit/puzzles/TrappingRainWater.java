@@ -1,5 +1,7 @@
 package io.sevenbit.puzzles;
 
+import java.util.ArrayDeque;
+
 /**
  * Leetcode 42 trapping rain water
  */
@@ -80,6 +82,25 @@ public class TrappingRainWater {
                 right--;
 
             }
+        }
+        return result;
+    }
+
+    public int trapMonotonicStack(int[] height) {
+        ArrayDeque<Integer> stack = new ArrayDeque<Integer>();
+        int len = height.length;
+        int result = 0;
+        int i = 0;
+        while(i < len) {
+            while(!stack.isEmpty() && height[i] > height[stack.peek()]) {//element on top of stack is bounded between current element and previous element
+                int curIdx = stack.pop();
+                if(stack.isEmpty()) break; //no left border
+                int distance = i - stack.peek() - 1;
+                int add = Math.min(height[i], height[stack.peek()]) - height[curIdx];
+                result += add * distance;
+            }
+            stack.addFirst(i);
+            i++;
         }
         return result;
     }
