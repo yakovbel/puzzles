@@ -16,7 +16,7 @@ the right with the lower height. Desired rectangle is bounded by this to bars L 
 To find L and R for every bar effectively we will use monotonic stack.
 We add a bar to the stack if it's greater than the current stack peak. (becuase we haven't find R yet.)
 */
-    public int largestRectangleArea(int[] heights) {
+    public static int largestRectangleArea(int[] heights) {
         Deque<Integer> stack = new ArrayDeque<>();
         int len = heights.length;
         int result = 0;
@@ -36,5 +36,11 @@ We add a bar to the stack if it's greater than the current stack peak. (becuase 
             result = Math.max(result, curHeight * curWidth);
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        var h = new int[]{1,4, 2, 5, 2};
+        int area = largestRectangleArea(h);
+        System.out.println(area);
     }
 }
